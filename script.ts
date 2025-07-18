@@ -71,7 +71,7 @@ function makePage(radioButtons: string, inner: string) {
         max-width: 800px;
       }
     </style>
-    <title>Multiplication Table</title>
+    <title>table for mom's reel</title>
   </head>`;
   html += "<body>";
   html += radioButtons;
