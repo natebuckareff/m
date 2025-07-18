@@ -1,11 +1,26 @@
 <html><head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      /* Base font size bump for better mobile readability */
+      body, table { font-size: 24px; }
+      table {
+        width: 100%;
+        max-width: 800px;
+      }
+    </style>
     <title>Multiplication Table</title>
   </head><body>
     <div style="margin-bottom: 1em;">
-      <label><input type="radio" name="filter" value="all" checked> Show all (891)</label>
-      <label><input type="radio" name="filter" value="correct"> Correct only (50)</label>
-      <label><input type="radio" name="filter" value="wrong"> Wrong only (841)</label>
+      <div>
+        <label><input type="radio" name="filter" value="all" checked> Show all (891)</label>
+      </div>
+      <div>
+        <label><input type="radio" name="filter" value="correct"> Correct only (50)</label>
+      </div>
+      <div>
+        <label><input type="radio" name="filter" value="wrong"> Wrong only (841)</label>
+      </div>
     </div>
   <table border="1" cellpadding="4" cellspacing="0">
   <tr><th>eq</th><th>output</th><th>correct</th></tr>

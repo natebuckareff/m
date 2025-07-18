@@ -44,9 +44,15 @@ for (let a = 1; a <= 9; ++a) {
 function makeRadioButtons(total: number, correct: number, wrong: number) {
   return `
     <div style="margin-bottom: 1em;">
-      <label><input type="radio" name="filter" value="all" checked> Show all (${total})</label>
-      <label><input type="radio" name="filter" value="correct"> Correct only (${correct})</label>
-      <label><input type="radio" name="filter" value="wrong"> Wrong only (${wrong})</label>
+      <div>
+        <label><input type="radio" name="filter" value="all" checked> Show all (${total})</label>
+      </div>
+      <div>
+        <label><input type="radio" name="filter" value="correct"> Correct only (${correct})</label>
+      </div>
+      <div>
+        <label><input type="radio" name="filter" value="wrong"> Wrong only (${wrong})</label>
+      </div>
     </div>
   `;
 }
@@ -56,6 +62,15 @@ function makePage(radioButtons: string, inner: string) {
   html += "<html>";
   html += `<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      /* Base font size bump for better mobile readability */
+      body, table { font-size: 24px; }
+      table {
+        width: 100%;
+        max-width: 800px;
+      }
+    </style>
     <title>Multiplication Table</title>
   </head>`;
   html += "<body>";
