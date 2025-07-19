@@ -8,9 +8,26 @@
         width: 100%;
         max-width: 800px;
       }
+      #play-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0,0,0,0);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        cursor: pointer;
+        z-index: 100;
+      }
     </style>
     <title>table for mom's reel</title>
   </head><body>
+    <audio id="song" loop>
+      <source src="song.m4a" type="audio/mp4">
+      Your browser does not support the audio element.
+    </audio>
+  
     <div style="margin-bottom: 1em;">
       <div>
         <label><input type="radio" name="filter" value="all" checked> Show all (891)</label>
@@ -915,7 +932,7 @@
   <tr class="data-row" data-correct="❌" style="background-color: #f7d4d4;"><td>9 x 97</td><td>891</td><td>❌</td></tr>
   <tr class="data-row" data-correct="❌" style="background-color: #f7d4d4;"><td>9 x 98</td><td>891</td><td>❌</td></tr>
   <tr class="data-row" data-correct="✅" style="background-color: #d4f7d4;"><td>9 x 99</td><td>891</td><td>✅</td></tr>
-</table>
+</table><div id='play-overlay' />
     <script>
       function filterTable() {
         const value = document.querySelector('input[name="filter"]:checked').value;
@@ -936,6 +953,18 @@
       document.querySelectorAll('input[name="filter"]').forEach(radio => {
         radio.addEventListener("change", filterTable);
       });
+
+      const overlay = document.getElementById('play-overlay');
+      const audio = document.getElementById('song');
+
+      overlay.addEventListener('click', () => {
+        audio.play().catch(error => {
+          console.error("Audio playback failed:", error);
+          // You could show a message to the user here
+        });
+        overlay.style.display = 'none';
+      }, { once: true });
+
       // Initial filter in case the table is rendered after DOMContentLoaded
       window.addEventListener("DOMContentLoaded", filterTable);
     </script>

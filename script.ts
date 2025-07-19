@@ -70,12 +70,31 @@ function makePage(radioButtons: string, inner: string) {
         width: 100%;
         max-width: 800px;
       }
+      #play-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0,0,0,0);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        cursor: pointer;
+        z-index: 100;
+      }
     </style>
     <title>table for mom's reel</title>
   </head>`;
   html += "<body>";
+  html += `
+    <audio id="song" loop>
+      <source src="song.m4a" type="audio/mp4">
+      Your browser does not support the audio element.
+    </audio>
+  `;
   html += radioButtons;
   html += inner;
+  html += "<div id='play-overlay' />";
   html += `
     <script>
       function filterTable() {
@@ -97,6 +116,18 @@ function makePage(radioButtons: string, inner: string) {
       document.querySelectorAll('input[name="filter"]').forEach(radio => {
         radio.addEventListener("change", filterTable);
       });
+
+      const overlay = document.getElementById('play-overlay');
+      const audio = document.getElementById('song');
+
+      overlay.addEventListener('click', () => {
+        audio.play().catch(error => {
+          console.error("Audio playback failed:", error);
+          // You could show a message to the user here
+        });
+        overlay.style.display = 'none';
+      }, { once: true });
+
       // Initial filter in case the table is rendered after DOMContentLoaded
       window.addEventListener("DOMContentLoaded", filterTable);
     </script>
